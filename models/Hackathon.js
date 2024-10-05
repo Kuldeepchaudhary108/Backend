@@ -6,20 +6,15 @@ const hackathonSchema = new mongoose.Schema({
      type: String,
      required: true 
     },
-  image:{
-    type:String,
-    required: true
-  },
   description: { 
     type: String
   },
   date: { 
     type: Date, 
     required: true },
-  teams: [{ 
-    type: String, 
-   ref: 'Team'
-    }]
+  // teams: [{ 
+  //   type: mongoose.Schema.Types.ObjectId, 
+  //   ref: 'Team' }]
 
 }, { timestamps: true });
 

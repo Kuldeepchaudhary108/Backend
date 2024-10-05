@@ -38,7 +38,7 @@ export const create= async (req, res) => {
             title,
             description,
             date,
-            teams,
+             teams,
             image: imagePath
         });
 
