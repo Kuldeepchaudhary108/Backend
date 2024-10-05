@@ -1,9 +1,27 @@
 import Hackathon from '../models/Hackathon.js';
 
+// Fetch all Events
+export const getEvents= async(req,res)=>{
+    try {
+        let events=await Hackathon.find();
+        res.status(200).json(events);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error', details: error.message });
+    }
+}
+
 // Create a new Hackathon
 export const create= async (req, res) => {
     try {
         const { title, description, date, teams } = req.body;
+
+        console.log(req.file)
+
+        if (!req.file) {
+            res.status(400).send("no file uploaded");
+            return;
+        }
+        const imagePath = req.file.path;
 
         if (!title || !date) {
             return res.status(400).json({ message: 'Title and date are required.' });
@@ -14,6 +32,7 @@ export const create= async (req, res) => {
             description,
             date,
             teams,
+            image: imagePath
         });
 
         await newHackathon.save();
