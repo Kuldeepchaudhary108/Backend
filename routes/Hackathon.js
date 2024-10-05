@@ -1,5 +1,5 @@
 import express from 'express'
-import {  create, getEvents } from '../controllers/Hackathon.js';
+import {  create, getCardImage, getEvents } from '../controllers/Hackathon.js';
 import multer from 'multer';
 import path from 'path';
 
@@ -32,5 +32,7 @@ const upload = multer({
 
 HackathonRoutes.post('/create',upload.single("image"),create)
 HackathonRoutes.post('/events',getEvents)
+HackathonRoutes.post('/cardimage',getCardImage)
+
 
 export default HackathonRoutes

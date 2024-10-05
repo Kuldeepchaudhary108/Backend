@@ -7,6 +7,8 @@ import cookieParser from "cookie-parser"
 import LeaderboardRoutes from './routes/Leaderboard.js'
  import ProjectRoutes from './routes/Project.js'
 import TeamRoutes from './routes/Team.js'
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 
 
@@ -25,6 +27,12 @@ app.use(cors())
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Error connecting to MongoDB', err));
+
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+
+
+  app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 // Here will be the hackathon routes

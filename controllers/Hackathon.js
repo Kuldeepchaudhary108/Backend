@@ -1,5 +1,12 @@
 import Hackathon from '../models/Hackathon.js';
 
+// Event Card Image
+export const getCardImage=async(req,res)=>{
+    const { path } = req.body; 
+    const imageUrl = `${req.protocol}://${req.get('host')}/${path}`;
+    res.send({ url: imageUrl });
+}
+
 // Fetch all Events
 export const getEvents= async(req,res)=>{
     try {
