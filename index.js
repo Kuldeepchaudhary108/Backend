@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv'
 import cors from 'cors';
 import cookieParser from "cookie-parser"
-// import HackathonRoutes from './routes/Hackathon.js'
+ import HackathonRoutes from './routes/Hackathon.js'
 // import LeaderboardRoutes from './routes/Leaderboard.js'
 // import ProjectRoutes from './routes/Project.js'
 // import TeamRoutes from './routes/Team.js'
@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 // Here will be the hackathon routes
-// app.use('/hackathon' , HackathonRoutes)
+app.use('/hackathon' , HackathonRoutes)
 
 
 // // Here will be the LeaderboardRoutes 

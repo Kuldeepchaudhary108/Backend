@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const hackathonSchema = new mongoose.Schema({
     
@@ -13,10 +13,11 @@ const hackathonSchema = new mongoose.Schema({
     type: Date, 
     required: true },
   teams: [{ 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Team' }]
+    type: String, 
+   ref: 'Team'
+    }]
 
 }, { timestamps: true });
 
 const Hackathon = mongoose.model('Hackathon', hackathonSchema);
-module.exports = Hackathon;
+export default Hackathon
