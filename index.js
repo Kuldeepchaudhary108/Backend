@@ -1,6 +1,7 @@
 import express from 'express' 
 import mongoose from 'mongoose';
 import dotenv from 'dotenv'
+import cors from 'cors';
 import cookieParser from "cookie-parser"
 // import HackathonRoutes from './routes/Hackathon.js'
 // import LeaderboardRoutes from './routes/Leaderboard.js'
@@ -19,6 +20,7 @@ app.get("/" , (req , res)=>{
 
 app.use(express.json());
 app.use(cookieParser())
+app.use(cors())
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('Connected to MongoDB'))
