@@ -4,9 +4,9 @@ import dotenv from 'dotenv'
 import cors from 'cors';
 import cookieParser from "cookie-parser"
  import HackathonRoutes from './routes/Hackathon.js'
-// import LeaderboardRoutes from './routes/Leaderboard.js'
-// import ProjectRoutes from './routes/Project.js'
-// import TeamRoutes from './routes/Team.js'
+import LeaderboardRoutes from './routes/Leaderboard.js'
+ import ProjectRoutes from './routes/Project.js'
+import TeamRoutes from './routes/Team.js'
 
 
 
@@ -32,13 +32,13 @@ app.use('/hackathon' , HackathonRoutes)
 
 
 // // Here will be the LeaderboardRoutes 
-// app.use('/leaderboard' , LeaderboardRoutes)
+app.use('/leaderboard' , LeaderboardRoutes)
 
 // Here will be the project routes
-// app.use('/project' , ProjectRoutes)
+ app.use('/project' , ProjectRoutes)
 
 // Here will be the team routes
-// app.use('/team' , TeamRoutes)
+ app.use('/team' , TeamRoutes)
 
 
 // Here will be the user routes
