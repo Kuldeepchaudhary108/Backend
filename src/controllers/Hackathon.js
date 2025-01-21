@@ -99,7 +99,7 @@ export const getEvents = async (req, res) => {
 };
 
 // Create a new Hackathon
-export const create = async (req, res) => {
+export const createHackathon = async (req, res) => {
   try {
     const { title, description, date, teams } = req.body;
 
