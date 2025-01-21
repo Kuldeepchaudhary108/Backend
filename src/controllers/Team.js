@@ -6,7 +6,7 @@ import { ApiError } from "../utils/ApiError.js";
 
 export const createTeam = async (req, res) => {
   try {
-    const { name, hackathonId, memberIds, projectId } = req.body;
+    const { name, hackathonId, memberIds, projectId, leaderName } = req.body;
 
     const hackathon = await Hackathon.findById(hackathonId);
     if (!hackathon) {
@@ -23,6 +23,7 @@ export const createTeam = async (req, res) => {
       hackathon: hackathonId,
       members: memberIds,
       submittedProject: projectId || null,
+      leaderName,
     });
 
     const teamDetails = await Team.findById(newTeam._id).select(

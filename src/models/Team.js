@@ -1,25 +1,34 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const teamSchema = new mongoose.Schema({
-    name: { 
-        type: String, 
-        required: true 
+const teamSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
-    hackathon: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Hackathon', 
-        required: true 
+    leaderName: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
-    members: [{ 
+    hackathon: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Hackathon",
+      required: true,
+    },
+    members: [
+      {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User' 
-    }],
+        ref: "User",
+      },
+    ],
     submittedProject: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Project' 
-    }
-}, { timestamps: true });
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project",
+    },
+  },
+  { timestamps: true }
+);
 
-const Team = mongoose.model('Team', teamSchema);
+const Team = mongoose.model("Team", teamSchema);
 
-export default Team; 
+export default Team;

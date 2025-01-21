@@ -5,6 +5,9 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { error } from "console";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import exp from "constants";
+import { title } from "process";
 
 // Uploading image here for the event
 export const uploadEventImages = async (req, res) => {
@@ -112,7 +115,7 @@ export const create = async (req, res) => {
       return res.status(400).json({ message: "Title and date are required." });
     }
 
-    const newHackathon = new Hackathon({
+    const newHackathon = Hackathon.create({
       title,
       description,
       date,
@@ -120,16 +123,52 @@ export const create = async (req, res) => {
       image: imagePath,
     });
 
-    await newHackathon.save();
-    res
-      .status(201)
-      .json({
-        message: "Hackathon created successfully",
-        hackathon: newHackathon,
-      });
+    // await newHackathon.save();
+    res.status(201).json({
+      message: "Hackathon created successfully",
+      hackathon: newHackathon,
+    });
   } catch (error) {
     res
       .status(500)
       .json({ message: "Internal server error", details: error.message });
   }
 };
+
+export const getTotalTeams = asyncHandler(async (req, res) => {
+  const { hackathonId } = req.body;
+
+  if (!hackathonId) {
+    throw new ApiError(400, "Event name is missing");
+  }
+
+  const total = await Hackathon.aggregate([
+    {
+      $match: { _id: hackathonId },
+    },
+    {
+      $lookup: {
+        from: "Team",
+        localField: "teams",
+        foreignField: "_id",
+        as: "Totalteams",
+      },
+    },
+    {
+      $addFields: {
+        TeamCount: {
+          $size: "$Totalteams",
+        },
+      },
+    },
+    {
+      $project: {
+        title: 1,
+        description: 1,
+        date: 1,
+        teams: 1,
+        Totalteams: 1,
+      },
+    },
+  ]);
+}); 
