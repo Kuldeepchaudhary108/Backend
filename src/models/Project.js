@@ -13,7 +13,6 @@ const projectSchema = new mongoose.Schema(
     githubLink: {
       type: String,
       required: true,
-      // Link to GitHub repo or other project link
     },
     team: {
       type: mongoose.Schema.Types.ObjectId,
